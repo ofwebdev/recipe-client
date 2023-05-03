@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg",
+        "title": "The Ultimate Guide to Building a Graphic Design Portfolio Website",
+        "content": "A portfolio is an important business asset for every freelance graphic designer. A graphic designer web portfolio showcases…",
+        "author": {
+            "name": "Joly",
+            "date": "March 10, 2023",
+            "readingTime": "10 Mins",
+            "avatar": "https://secure.gravatar.com/avatar/c692cc3679757c325e033e4e38513bd3?s=192&d=mm&r=g"
+        }
+    },
+    {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1565299623319-7f0895b29e06",
+        "title": "The Best Grilled Cheese Sandwiches Ever",
+        "content": "There's nothing like a warm and gooey grilled cheese sandwich on a cold day. Here's how to make the best grilled cheese sandwiches ever!",
+        "author": {
+            "name": "Sara",
+            "date": "February 28, 2023",
+            "readingTime": "5 Mins",
+            "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+        }
+    },
+    {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1551218808-94ebd9141d83",
+        "title": "How to Build a Successful Online Business",
+        "content": "Building an online business can be tough, but with the right strategy and tools, it's possible to succeed. Here's what you need to know.",
+        "author": {
+            "name": "Tom",
+            "date": "January 20, 2023",
+            "readingTime": "15 Mins",
+            "avatar": "https://randomuser.me/api/portraits/men/44.jpg"
+        }
+    },
+    {
+        "id": 4,
+        "image": "https://images.unsplash.com/photo-1585422209436-dc49190356e1",
+        "title": "10 Tips for Staying Motivated While Working From Home",
+        "content": "Working from home can be a challenge, especially when it comes to staying motivated. Here are 10 tips to help you stay on track and get things done.",
+        "author": {
+            "name": "Emily",
+            "date": "December 5, 2022",
+            "readingTime": "8 Mins",
+            "avatar": "https://randomuser.me/api/portraits/women/13.jpg"
+        }
+    }
+]

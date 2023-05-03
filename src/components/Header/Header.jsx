@@ -5,11 +5,14 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+
+import "./Header.scss";
 
 function Header() {
   const [success, setSuccess] = useState(false);
+  const location = useLocation();
 
   const { user, logOut } = useContext(AuthContext);
   const logoutHandler = () => {
@@ -25,7 +28,7 @@ function Header() {
   return (
     <>
       {["sm"].map((expand) => (
-        <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+        <Navbar key={expand} bg="light" expand={expand} className="mb-3 header">
           <Container>
             <h3>FreshZone</h3>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -41,16 +44,44 @@ function Header() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link>
+                    <Link
+                      to={"/"}
+                      className={location.pathname === "/home" ? "active" : ""}
+                    >
+                      Home
+                    </Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link
+                      to={"/about"}
+                      className={location.pathname === "/about" ? "active" : ""}
+                    >
+                      About
+                    </Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link
+                      to={"/blog"}
+                      className={location.pathname === "/blog" ? "active" : ""}
+                    >
+                      Blog
+                    </Link>
+                  </Nav.Link>
                   <Nav.Link>
                     {user ? (
                       <Link onClick={logoutHandler}>Logout</Link>
                     ) : (
-                      <Link to="/login">Login</Link>
+                      <Link
+                        to="/login"
+                        className={
+                          location.pathname === "/login" ? "active" : ""
+                        }
+                      >
+                        Login
+                      </Link>
                     )}
                   </Nav.Link>
-                  <Nav.Link href="#action3">Link</Nav.Link>
-                  <Nav.Link href="#action4">Link</Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control

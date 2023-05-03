@@ -1,63 +1,6 @@
-// Variables
-$header-height: 80px;
-$logo-height: 50px;
-
-// Desktop Styles
-@media (min-width: 992px) {
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: $header-height;
-    padding: 0 20px;
-    background-color: #333;
-    color: #fff;
-    
-    .logo {
-      height: $logo-height;
-    }
-    
-    .nav {
-      display: flex;
-      align-items: center;
-      
-      .nav-link {
-        margin-left: 20px;
-        text-decoration: none;
-        color: #fff;
-        font-size: 16px;
-        
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
-// Mobile Styles
-@media (max-width: 991px) {
-  .header {
-    height: auto;
-    padding: 20px;
-    
-    .logo {
-      height: $logo-height;
-      margin-bottom: 20px;
-    }
-    
-    .nav {
-      display: block;
-      
-      .nav-link {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 18px;
-        
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
-    }
+.header {
+   a{
+    color: #6e6e6e;
+    text-decoration: none;
   }
 }

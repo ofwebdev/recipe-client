@@ -1,16 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Main from "./layout/Main/Main";
-import Home from "./layout/Home";
+
+// css
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+// router
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// component
+import Main from "./layout/Main/Main";
+import Home from "./layout/Home";
 import Category from "./pages/Category/Category";
 import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/login/ForgotPassword";
 import Register from "./pages/register/Register";
 import AuthProvider from "./provider/AuthProvider";
+import BlogLayout from "./layout/BlogLayout/BlogLayout";
+import Notfound from "./pages/Notfound/Notfound";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +40,10 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/blog",
+    element: <BlogLayout></BlogLayout>,
+  },
+  {
     path: "/login",
     element: <Login />,
   },
@@ -41,6 +54,11 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+
+  {
+    path: "*",
+    element: <Notfound />,
   },
 ]);
 
