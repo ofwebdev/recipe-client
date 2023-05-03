@@ -1,17 +1,19 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import { Container, Row } from "react-bootstrap";
-import Blog from "../../components/Blog/Blog";
+import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
+import { Outlet } from "react-router-dom";
 
-function BlogLayout() {
+function RecipeLayout() {
   return (
     <div>
       <Header />
 
       <Container>
         <Row>
-          <Blog />
+          <Col md={12}>
+            <Outlet />
+          </Col>
         </Row>
       </Container>
 
@@ -20,4 +22,4 @@ function BlogLayout() {
   );
 }
 
-export default BlogLayout;
+export default RecipeLayout;

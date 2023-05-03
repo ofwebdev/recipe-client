@@ -20,11 +20,13 @@ import Register from "./pages/register/Register";
 import AuthProvider from "./provider/AuthProvider";
 import BlogLayout from "./layout/BlogLayout/BlogLayout";
 import Notfound from "./pages/Notfound/Notfound";
+import RecipeLayout from "./layout/RecipeLayout/RecipeLayout";
+import Recipe from "./components/Recipe/Recipe";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main>Hello world!</Main>,
+    element: <Main />,
     children: [
       {
         path: "/",
@@ -32,10 +34,10 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`http://localhost:5000/recipe`),
       },
       {
-        path: "/category/:id",
+        path: "/country/:id",
         element: <Category />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/country/country/${params.id}`),
+          fetch(`http://localhost:5000/country/${params.id}`),
       },
     ],
   },
@@ -59,6 +61,19 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <Notfound />,
+  },
+
+  {
+    path: "/recipe",
+    element: <RecipeLayout></RecipeLayout>,
+    children: [
+      {
+        path: ":id",
+        element: <Recipe />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/recipe/${params.id}`),
+      },
+    ],
   },
 ]);
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Badge, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 import {
   FacebookShareButton,
@@ -10,7 +10,6 @@ import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
 
 function Post({ recipe }) {
-  console.log(recipe);
   const [showFullDetails, setShowFullDetails] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +44,7 @@ function Post({ recipe }) {
             />
             <span className="ms-2">{recipe.recipe.chef.name}</span>
           </div>
-          <Link to={`/recipe`}>
+          <Link to={`/recipe/${recipe._id}`}>
             <Card.Img
               variant="top"
               src={recipe.recipe.image}
