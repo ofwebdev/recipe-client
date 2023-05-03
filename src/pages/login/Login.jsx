@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import logo from "../../assets/logo.png";
+// import logo from "../../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
@@ -13,7 +13,7 @@ function Login() {
   const [success, setSuccess] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn, signInWithGitHub, signInWithGmail } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -67,6 +67,28 @@ function Login() {
     }
   };
 
+  const handleSignInWithGitHub = async () => {
+    try {
+      await signInWithGitHub();
+      setSuccess(true);
+      navigate(from, { replace: true });
+      // Do something after successful sign-in
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSignInWithGmail = async () => {
+    try {
+      await signInWithGmail();
+      setSuccess(true);
+      navigate(from, { replace: true });
+      // Do something after successful sign-in
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // Recover password
   const toggleForgotPassword = () => {
     setShowForgotPassword(!showForgotPassword);
@@ -74,11 +96,11 @@ function Login() {
 
   return (
     <Container className="d-flex flex-column align-items-center mt-5">
-      <img
+      {/* <img
         src={logo}
         alt="Logo"
         style={{ maxWidth: "50%", marginBottom: "2rem" }}
-      />
+      /> */}
       <Form
         onSubmit={handleSubmit}
         className="w-100 mx-auto"
@@ -113,6 +135,26 @@ function Login() {
           style={{ width: "100%" }}
         >
           Sign In
+        </Button>
+
+        <Button
+          variant="primary"
+          type="submit"
+          className="mt-4"
+          onClick={handleSignInWithGitHub}
+          style={{ width: "100%" }}
+        >
+          Sign in with GitHub
+        </Button>
+
+        <Button
+          variant="primary"
+          type="submit"
+          className="mt-4"
+          onClick={handleSignInWithGmail}
+          style={{ width: "100%" }}
+        >
+          Sign in with Gmail
         </Button>
 
         <p className="mt-3 mb-0 text-center">

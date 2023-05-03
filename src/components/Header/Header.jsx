@@ -1,12 +1,27 @@
+import { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 function Header() {
+  const [success, setSuccess] = useState(false);
+
+  const { user, logOut } = useContext(AuthContext);
+  const logoutHandler = () => {
+    logOut()
+      .then(() => {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 1000);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <>
       {["sm"].map((expand) => (
@@ -27,7 +42,13 @@ function Header() {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
+                  <Nav.Link>
+                    {user ? (
+                      <Link onClick={logoutHandler}>Logout</Link>
+                    ) : (
+                      <Link to="/login">Login</Link>
+                    )}
+                  </Nav.Link>
                   <Nav.Link href="#action3">Link</Nav.Link>
                   <Nav.Link href="#action4">Link</Nav.Link>
                 </Nav>
@@ -40,6 +61,30 @@ function Header() {
                   />
                   <Button variant="outline-success">Search</Button>
                 </Form>
+                {user ? (
+                  <div
+                    className="profile d-flex align-items-center"
+                    style={{
+                      padding: "5px 6px",
+                      background: "#e8e8e7",
+                      borderRadius: "50px",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    {user.photoURL && (
+                      <img
+                        width="30"
+                        height="30"
+                        style={{ borderRadius: "50%" }}
+                        src={user.photoURL}
+                        alt=""
+                      />
+                    )}
+                    {user.displayName && (
+                      <p className="mb-0 ms-1">{user.displayName}</p>
+                    )}
+                  </div>
+                ) : null}
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

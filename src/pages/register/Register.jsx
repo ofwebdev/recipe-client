@@ -21,7 +21,8 @@ function Register() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const { createUser, sentEmailLink } = useContext(AuthContext);
+  const { register, signInWithGitHub, signInWithGmail } =
+    useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,11 +52,16 @@ function Register() {
       return;
     }
 
+    if (!photoUrl) {
+      setError("Please enter your profile photo url");
+      return;
+    }
+
     if (!email || !password) {
       setError("Please fill all the fields.");
       return;
     }
-    createUser(email, password)
+    register(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         setEmail("");
@@ -63,16 +69,6 @@ function Register() {
         setError("");
         setSuccess(true);
         action.reset();
-
-        setTimeout(() => {
-          sentEmailLink()
-            .then((res) => {
-              alert("Please verify your email address");
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        }, 1000);
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
@@ -84,12 +80,34 @@ function Register() {
       });
   };
 
+  const handleSignInWithGitHub = async () => {
+    try {
+      await signInWithGitHub();
+
+      setSuccess(true);
+      // Do something after successful sign-in
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSignInWithGmail = async () => {
+    try {
+      await signInWithGmail();
+
+      setSuccess(true);
+      // Do something after successful sign-in
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked); // update state when checkbox is checked/unchecked
   };
 
   return (
-    <Container className="d-flex flex-column align-items-center mt-5">
+    <Container className="d-flex flex-column align-items-center my-5">
       <h1 className="mb-4">Register</h1>
       <Form
         onSubmit={handleSubmit}
@@ -153,6 +171,26 @@ function Register() {
           style={{ width: "100%" }}
         >
           Register
+        </Button>
+
+        <Button
+          variant="primary"
+          type="submit"
+          className="mt-3"
+          style={{ width: "100%" }}
+          onClick={handleSignInWithGitHub}
+        >
+          Sign in with GitHub
+        </Button>
+
+        <Button
+          variant="primary"
+          type="submit"
+          className="mt-3"
+          style={{ width: "100%" }}
+          onClick={handleSignInWithGmail}
+        >
+          Sign in with Gmail
         </Button>
 
         <p className="mt-3 mb-0 text-center">
