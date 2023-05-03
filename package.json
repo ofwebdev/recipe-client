@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.3",
     "bootstrap": "^5.2.3",
     "firebase": "^9.21.0",
     "localforage": "^1.10.0",
@@ -17,8 +21,12 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.0",
-    "sort-by": "^1.2.0"
+    "react-share": "^4.4.1",
+    "sass": "^1.62.1",
+    "sort-by": "^1.2.0",
+    "tailwind": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

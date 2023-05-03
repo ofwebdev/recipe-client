@@ -1,0 +1,15 @@
+.category {
+    padding: 20px 0px;
+    .list {
+
+        a{
+            padding: 10px 5px;
+            display: block;
+            margin-bottom: 0;
+            &:hover {
+                background-color: rgba(231, 231, 231, 0.92);
+                border-radius: 4px;
+            }
+        }
+    }
+}
