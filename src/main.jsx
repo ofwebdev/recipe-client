@@ -35,13 +35,13 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Category />,
-        loader: ({ params }) => fetch(`http://localhost:5000/recipe`),
+        loader: ({ params }) => fetch(`https://server-inky-three.vercel.app/recipe`),
       },
       {
         path: "/country/:id",
         element: <Category />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/country/${params.id}`),
+          fetch(`https://server-inky-three.vercel.app/country/${params.id}`),
       },
     ],
   },
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/recipe/${params.id}`),
+          fetch(`https://server-inky-three.vercel.app/recipe/${params.id}`),
       },
     ],
   },
@@ -92,7 +92,7 @@ const router = createBrowserRouter([
         <BlogDetails />
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`),
+    loader: ({ params }) => fetch(`https://server-inky-three.vercel.app/blog/${params.id}`),
   },
 ]);
 

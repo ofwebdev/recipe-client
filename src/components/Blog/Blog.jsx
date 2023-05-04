@@ -6,7 +6,7 @@ function Blog({ blog }) {
   const [blogData, setBlogData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/blog")
+    fetch("https://server-inky-three.vercel.app/blog")
       .then((res) => res.json())
       .then((data) => setBlogData(data))
       .catch((err) => console.log(err));
