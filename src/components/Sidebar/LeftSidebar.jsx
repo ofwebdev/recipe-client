@@ -6,7 +6,7 @@ function LeftSidebar() {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/country")
+    fetch("https://server-inky-three.vercel.app/country")
       .then((res) => res.json())
       .then((data) => setCategory(data))
       .catch((err) => console.log(err));
