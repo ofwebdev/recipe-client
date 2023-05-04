@@ -23,6 +23,9 @@ import Notfound from "./pages/Notfound/Notfound";
 import RecipeLayout from "./layout/RecipeLayout/RecipeLayout";
 import Recipe from "./components/Recipe/Recipe";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import BlogPost from "./pages/Blog/BlogDetails";
+import Blog from "./components/Blog/Blog";
+import BlogDetails from "./pages/Blog/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -41,10 +44,6 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/country/${params.id}`),
       },
     ],
-  },
-  {
-    path: "/blog",
-    element: <BlogLayout></BlogLayout>,
   },
   {
     path: "/login",
@@ -79,6 +78,21 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/recipe/${params.id}`),
       },
     ],
+  },
+  {
+    path: "/blog",
+    element: <BlogLayout></BlogLayout>,
+    children: [],
+  },
+
+  {
+    path: "blog/:id",
+    element: (
+      <PrivateRoute>
+        <BlogDetails />
+      </PrivateRoute>
+    ),
+    loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`),
   },
 ]);
 

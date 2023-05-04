@@ -2,29 +2,11 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
-// import RelatedNews from "./RelatedNews";
 
 function Recipe() {
-  // const [relatedNews, setRelatedNews] = useState([]);
-
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
-  console.log(id);
   const info = useLoaderData();
-  console.log(info);
-
-  //   const {
-  //     _id,
-  //     author,
-  //     category_id,
-  //     details,
-  //     image_url,
-  //     rating,
-  //     thumbnail_url,
-  //     title,
-  //     total_view,
-  //     others_info,
-  //   } = info;
 
   useEffect(() => {
     setIsLoading(false);
@@ -99,9 +81,6 @@ function Recipe() {
           </div>
         </Col>
       </Row>
-
-      {/* Render the related news */}
-      {/* {relatedNews.length > 0 && <RelatedNews relatedNews={relatedNews} />} */}
     </Container>
   );
 }

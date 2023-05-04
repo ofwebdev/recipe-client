@@ -80,9 +80,9 @@ function Footer() {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.025)" }}
       >
         © 2023 Copyright:
-        <a className="text-reset fw-bold" href="https://omor.vercel.app">
+        <Link className="text-reset fw-bold" to="https://omor.vercel.app">
           omorfaruk.com
-        </a>
+        </Link>
       </div>
     </footer>
   );
