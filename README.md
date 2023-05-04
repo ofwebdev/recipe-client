@@ -12,8 +12,8 @@ If you have any questions or just want to say hi, feel free to reach out to me o
 
 ## 🚀 My Recent Projects
 
-- [Shopping cart](https://storied-halva-152f19.netlify.app/)
-- [Country info](https://comfy-horse-db9575.netlify.app/)
+- [Client site](https://recipe-client.web.app/)
+- [Server site](https://server-inky-three.vercel.app/)
 
 ## ➡️ Key Features
 
