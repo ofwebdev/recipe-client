@@ -22,6 +22,7 @@ import BlogLayout from "./layout/BlogLayout/BlogLayout";
 import Notfound from "./pages/Notfound/Notfound";
 import RecipeLayout from "./layout/RecipeLayout/RecipeLayout";
 import Recipe from "./components/Recipe/Recipe";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -69,7 +70,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: <Recipe />,
+        element: (
+          <PrivateRoute>
+            <Recipe />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/recipe/${params.id}`),
       },
