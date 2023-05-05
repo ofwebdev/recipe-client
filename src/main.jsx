@@ -12,20 +12,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // component
 import Main from "./layout/Main/Main";
-import Home from "./layout/Home";
 import Category from "./pages/Category/Category";
 import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/login/ForgotPassword";
 import Register from "./pages/register/Register";
 import AuthProvider from "./provider/AuthProvider";
-import BlogLayout from "./layout/BlogLayout/BlogLayout";
 import Notfound from "./pages/Notfound/Notfound";
 import RecipeLayout from "./layout/RecipeLayout/RecipeLayout";
 import Recipe from "./components/Recipe/Recipe";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import BlogPost from "./pages/Blog/BlogDetails";
 import Blog from "./components/Blog/Blog";
-import BlogDetails from "./pages/Blog/BlogDetails";
+import BlogDetails from "./components/Blog/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +32,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Category />,
-        loader: ({ params }) => fetch(`https://server-inky-three.vercel.app/recipe`),
+        loader: ({ params }) =>
+          fetch(`https://server-inky-three.vercel.app/recipe`),
       },
       {
         path: "/country/:id",
@@ -81,8 +79,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/blog",
-    element: <BlogLayout></BlogLayout>,
-    children: [],
+    element: <Blog></Blog>,
+    loader: () => fetch(`https://server-inky-three.vercel.app/blog`),
   },
 
   {
@@ -92,7 +90,8 @@ const router = createBrowserRouter([
         <BlogDetails />
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`https://server-inky-three.vercel.app/blog/${params.id}`),
+    loader: ({ params }) =>
+      fetch(`https://server-inky-three.vercel.app/blog/${params.id}`),
   },
 ]);
 

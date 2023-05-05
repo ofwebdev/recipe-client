@@ -1,16 +1,31 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { Button, Col, Container, Row } from "react-bootstrap";
-// import { useReactToPrint } from "react-to-pdf";
-import Loading from "../../components/Loading/Loading";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+
+import Loading from "../Loading/Loading";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 function BlogDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   const info = useLoaderData();
-  console.log(info);
+  const ref = useRef();
+
+  const generatePdf = () => {
+    // Generate canvas from the JSX
+    html2canvas(ref.current).then((canvas) => {
+      const imgData = canvas.toDataURL(info.image);
+      const pdf = new jsPDF("p", "mm", "a4");
+      const width = pdf.internal.pageSize.getWidth();
+      const height = (canvas.height * width) / canvas.width;
+      pdf.addImage(imgData, "PNG", 0, 0, width, height);
+      pdf.save("download.pdf");
+    });
+  };
 
   useEffect(() => {
     setIsLoading(false);
@@ -24,7 +39,7 @@ function BlogDetails() {
     <>
       <Header />
       <Container className="mt-5">
-        <Row>
+        <Row ref={ref}>
           <img
             className="mb-5"
             src={info.image}
@@ -32,7 +47,6 @@ function BlogDetails() {
             style={{ borderRadius: "32px" }}
           />
           <Col md={{ span: 6, offset: 3 }}>
-            {/* <div ref={componentRef}> */}
             {info.article.map((item, index) => (
               <div key={index}>
                 {typeof item === "string" && <h5>{item}</h5>}
@@ -41,16 +55,12 @@ function BlogDetails() {
                 )}
               </div>
             ))}
-            {/* </div> */}
           </Col>
         </Row>
       </Container>
-
-      {/* <div className="text-center">
-        <Button variant="primary" onClick={handlePrint}>
-          Download as PDF
-        </Button>
-      </div> */}
+      <div className="text-center mt-4">
+        <Button onClick={generatePdf}>Download PDF</Button>
+      </div>
       <Footer />
     </>
   );

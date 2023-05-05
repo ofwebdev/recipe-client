@@ -83,6 +83,7 @@ function Recipe() {
       </Row>
     </Container>
   );
+  return <Loading />;
 }
 
 export default Recipe;
