@@ -26,6 +26,7 @@ import Blog from "./components/Blog/Blog";
 import BlogDetails from "./components/Blog/BlogDetails";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
+import Policy from "./components/Policy/Policy";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />,
+  },
+  {
+    path: "/policy",
+    element: <Policy />,
   },
   {
     path: "/login",

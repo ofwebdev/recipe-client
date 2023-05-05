@@ -30,7 +30,9 @@ function Header() {
       {["sm"].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3 header">
           <Container>
-            <h3>FreshZone</h3>
+            <h3>
+              <Link to={"/"}>FreshZone</Link>
+            </h3>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
