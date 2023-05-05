@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
-import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaHeart } from "react-icons/fa";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -11,19 +11,34 @@ import { Link } from "react-router-dom";
 
 function Post({ recipe }) {
   const [showFullDetails, setShowFullDetails] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(
+    localStorage.getItem(recipe._id) !== null
+  );
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const shareUrl = "https://example.com/recipe/" + recipe._id;
+  const shareUrl = "https://recipe-client.web.app/" + recipe._id;
   const shareTitle = recipe.title;
 
   const toggleFullDetails = () => {
     setShowFullDetails(!showFullDetails);
   };
 
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   useEffect(() => {
     setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    if (isFavorite) {
+      localStorage.setItem(recipe._id, JSON.stringify(recipe));
+    } else {
+      localStorage.removeItem(recipe._id);
+    }
+  }, [isFavorite, recipe]);
 
   if (isLoading) {
     return <Loading />;
@@ -81,6 +96,9 @@ function Post({ recipe }) {
             </small>
           </div>
           <div style={{ display: "flex", gap: "10px" }}>
+            <Button variant="link" onClick={toggleFavorite}>
+              <FaHeart size={24} color={isFavorite ? "red" : "black"} />
+            </Button>
             {/* Facebook share button */}
             <FacebookShareButton url={shareUrl} quote={shareTitle}>
               <FaFacebook size={24} />

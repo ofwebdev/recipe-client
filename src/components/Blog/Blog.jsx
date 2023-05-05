@@ -4,6 +4,7 @@ import Loading from "../Loading/Loading";
 import Header from "../Header/Header";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../Footer/Footer";
+import LazyLoad from "react-lazy-load";
 
 function Blog() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,13 +26,14 @@ function Blog() {
           {blogData.map((blog) => (
             <div className="col-md-4" key={blog.id}>
               <div className="blog-card rounded p-3 bg-light">
-                <img
-                  className="w-100"
-                  height={200}
-                  style={{ objectFit: "contain" }}
-                  src={blog.image}
-                  alt=""
-                />
+                <LazyLoad height={200}>
+                  <img
+                    className="w-100"
+                    style={{ objectFit: "contain" }}
+                    src={blog.image}
+                    alt=""
+                  />
+                </LazyLoad>
                 <h4 className="mt-3">
                   <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
                 </h4>

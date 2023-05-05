@@ -2,6 +2,7 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
+import LazyLoad from "react-lazy-load";
 
 function Recipe() {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +21,9 @@ function Recipe() {
     <Container className="mt-5">
       <Row>
         <Col sm={7}>
-          <img src={info.recipe.image} style={{ width: "100%" }} />
+          <LazyLoad height={400}>
+            <img src={info.recipe.image} style={{ width: "100%" }} />
+          </LazyLoad>
 
           <h2 className="py-3 border-bottom">{info.recipe.name}</h2>
 
@@ -30,10 +33,6 @@ function Recipe() {
           >
             {info.recipe.instructions}
           </h5>
-
-          {/* <Link to={`/category/${category_id}`}>
-            <Button variant="danger">All news in this category</Button>
-          </Link> */}
         </Col>
 
         <Col sm={5}>
