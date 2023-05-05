@@ -6,6 +6,7 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "leaflet/dist/leaflet.css";
 
 // router
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -23,6 +24,8 @@ import Recipe from "./components/Recipe/Recipe";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Blog from "./components/Blog/Blog";
 import BlogDetails from "./components/Blog/BlogDetails";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +45,15 @@ const router = createBrowserRouter([
           fetch(`https://server-inky-three.vercel.app/country/${params.id}`),
       },
     ],
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+
+  {
+    path: "/contact",
+    element: <Contact />,
   },
   {
     path: "/login",
