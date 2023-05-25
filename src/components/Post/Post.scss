@@ -73,6 +73,10 @@
     }
     cursor: pointer;
     transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    .animated-button {
+      transform: translateX(0);
+    }
   }
   .card-img-overlay {
     transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
@@ -83,4 +87,9 @@
       rgba(69, 95, 113, 1) 100%
     );
   }
+}
+
+.animated-button {
+  transform: translateX(200%);
+  transition: transform 0.3s ease-in-out;
 }
