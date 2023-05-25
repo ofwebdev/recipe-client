@@ -9,114 +9,81 @@ import {
 import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
 
-function Post({ recipe }) {
-  const [showFullDetails, setShowFullDetails] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(
-    localStorage.getItem(recipe._id) !== null
-  );
+import "./Post.scss";
 
+function Post({ recipe }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const shareUrl = "https://recipe-client.web.app/" + recipe._id;
   const shareTitle = recipe.title;
 
-  const toggleFullDetails = () => {
-    setShowFullDetails(!showFullDetails);
-  };
-
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
-
   useEffect(() => {
     setIsLoading(false);
   }, []);
-
-  useEffect(() => {
-    if (isFavorite) {
-      localStorage.setItem(recipe._id, JSON.stringify(recipe));
-    } else {
-      localStorage.removeItem(recipe._id);
-    }
-  }, [isFavorite, recipe]);
 
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    <Card className="mb-3">
-      <div className="row g-0">
-        <div className="col-md-12">
-          <div className="my-3 ps-2">
-            <img
-              src={recipe.recipe.chef.image}
-              alt={recipe.recipe.chef.name}
-              className="rounded-circle"
-              width={30}
-              height={30}
-              style={{ objectFit: "cover" }}
-            />
-            <span className="ms-2">{recipe.recipe.chef.name}</span>
+    <div className="col-lg-4 mb-4">
+      <div
+        className="card text-white card-has-bg click-col"
+        style={{
+          backgroundImage: `url(${recipe.chef.image})`,
+        }}
+      >
+        <div className="card-img-overlay d-flex flex-column">
+          <div className="card-body">
+            <small className="card-meta mb-2">Chef Leadership</small>
+            <h4 className="card-title mt-0 ">
+              <Link className="text-white">
+                years_of_experience : {recipe.chef.years_of_experience}
+              </Link>
+            </h4>
+
+            <small>
+              <i className="far fa-clock"></i> {recipe.chef.likes} Like
+            </small>
+
+            <br />
+
+            <Link to={`/recipe/${recipe._id}`}>See More</Link>
           </div>
-          <Link to={`/recipe/${recipe._id}`}>
-            <Card.Img
-              variant="top"
-              src={recipe.recipe.image}
-              style={{ width: "100%", borderRadius: 0 }}
-            />
-          </Link>
-        </div>
-        <div className="col-md-12">
-          <Card.Body>
-            <Card.Title>{recipe.recipe.name}</Card.Title>
-            {showFullDetails ? (
-              <Card.Text>{recipe.recipe.description}</Card.Text>
-            ) : (
-              <Card.Text style={{ marginBottom: 0 }}>
-                {recipe.recipe.description.substring(0, 100)}...
-              </Card.Text>
-            )}
-            <Button
-              variant="link"
-              className="btn btn-link p-0"
-              onClick={toggleFullDetails}
-            >
-              {showFullDetails ? "See less" : "See more"}
-            </Button>
-          </Card.Body>
+          <div className="card-footer">
+            <div className="media" style={{ display: "flex", gap: "10px" }}>
+              <img
+                className="mr-3 rounded-circle"
+                src={recipe.chef.image}
+                alt="Generic placeholder image"
+                style={{ width: "50px", height: "50px" }}
+              />
+              <div className="media-body">
+                <h6 className="my-0 text-white d-block">{recipe.chef.name}</h6>
+                <small>Chef of Bangladesh</small>
+              </div>
+
+              <br />
+
+              {/* Facebook share button */}
+              <FacebookShareButton url={shareUrl} quote={shareTitle}>
+                <FaFacebook size={24} />
+              </FacebookShareButton>
+
+              {/* Twitter share button */}
+              <TwitterShareButton url={shareUrl} title={shareTitle}>
+                <FaTwitter size={24} />
+              </TwitterShareButton>
+
+              {/* LinkedIn share button */}
+              <LinkedinShareButton url={shareUrl} title={shareTitle}>
+                <FaLinkedin size={24} />
+              </LinkedinShareButton>
+            </div>
+          </div>
         </div>
       </div>
-
-      <Card.Footer>
-        <div className="d-flex justify-content-between my-2">
-          <div>
-            <small className="text-muted">
-              {recipe.recipe.chef.likes} Likes
-            </small>
-          </div>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <Button variant="link" onClick={toggleFavorite}>
-              <FaHeart size={24} color={isFavorite ? "red" : "black"} />
-            </Button>
-            {/* Facebook share button */}
-            <FacebookShareButton url={shareUrl} quote={shareTitle}>
-              <FaFacebook size={24} />
-            </FacebookShareButton>
-
-            {/* Twitter share button */}
-            <TwitterShareButton url={shareUrl} title={shareTitle}>
-              <FaTwitter size={24} />
-            </TwitterShareButton>
-
-            {/* LinkedIn share button */}
-            <LinkedinShareButton url={shareUrl} title={shareTitle}>
-              <FaLinkedin size={24} />
-            </LinkedinShareButton>
-          </div>
-        </div>
-      </Card.Footer>
-    </Card>
+    </div>
   );
 }
 

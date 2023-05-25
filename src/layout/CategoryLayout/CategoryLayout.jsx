@@ -11,10 +11,6 @@ function CategoryLayout() {
 
       <Container>
         <Row>
-          <Col lg={3}>
-            <LeftSidebar />
-          </Col>
-
           <Col lg={6}>
             <Outlet />
           </Col>
