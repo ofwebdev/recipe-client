@@ -38,7 +38,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Chafe />,
-        loader: ({ params }) => fetch(`http://localhost:5000/recipe`),
+        loader: ({ params }) =>
+          fetch(`https://server-ofwebdev.vercel.app/recipe`),
       },
     ],
   },
@@ -85,14 +86,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/recipe/${params.id}`),
+          fetch(`https://server-ofwebdev.vercel.app/recipe/${params.id}`),
       },
     ],
   },
   {
     path: "/blog",
     element: <Blog></Blog>,
-    loader: () => fetch(`http://localhost:5000/blog`),
+    loader: () => fetch(`https://server-ofwebdev.vercel.app/blog`),
   },
 
   {
@@ -102,7 +103,8 @@ const router = createBrowserRouter([
         <BlogDetails />
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`),
+    loader: ({ params }) =>
+      fetch(`https://server-ofwebdev.vercel.app/blog/${params.id}`),
   },
 ]);
 
